@@ -4,9 +4,9 @@ TEMPLATE := https://github.com/creimers/djangocms_scaffold/archive/djangocms.zip
 
 all: startapp install-common 
 
-develop: install-development
+develop: startapp install-development
 
-production: install-production
+production: startapp install-production
 
 $(PYTHON):
 	virtualenv env
@@ -28,3 +28,6 @@ install-production: install-common
 
 syncdb: install-common
 	$(PYTHON) manage.py syncdb
+
+clean:
+	git clean -xfd
