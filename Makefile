@@ -2,11 +2,11 @@ PYTHON := env/bin/python
 PIP := env/bin/pip
 TEMPLATE := https://github.com/creimers/djangocms_scaffold/archive/djangocms.zip
 
-all: startapp install-common
+all: startapp install-common npm bower
 
-develop: startapp install-development 
+develop: startapp install-development npm bower
 
-production: startapp install-production 
+production: startapp install-production npm bower
 
 $(PYTHON):
 	virtualenv env
