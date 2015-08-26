@@ -1,6 +1,6 @@
 PYTHON := env/bin/python
 PIP := env/bin/pip
-TEMPLATE := https://github.com/creimers/djangocms_scaffold/archive/djangocms.zip
+TEMPLATE := https://github.com/creimers/djangocms_scaffold/archive/master.zip
 
 all: startapp install-common npm bower
 
