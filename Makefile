@@ -2,11 +2,11 @@ PYTHON := env/bin/python
 PIP := env/bin/pip
 TEMPLATE := https://github.com/creimers/djangocms_scaffold/archive/djangocms.zip
 
-all: startapp install-common 
+all: startapp install-common
 
-develop: startapp install-development
+develop: startapp install-development 
 
-production: startapp install-production
+production: startapp install-production 
 
 $(PYTHON):
 	virtualenv env
@@ -31,3 +31,12 @@ syncdb: install-common
 
 clean:
 	git clean -xfd
+
+npm:
+	cd source/ && npm install
+
+bower:
+	cd source/ && bower install
+
+gulp: npm bower
+	cd source/ && gulp develop
