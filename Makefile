@@ -1,12 +1,16 @@
 PYTHON := env/bin/python
 PIP := env/bin/pip
+
+NPM := $(shell which npm)
+GULP := $(shell which gulp)
+
 TEMPLATE := https://github.com/creimers/djangocms_scaffold/archive/master.zip
 
-all: startapp install-common npm bower
+all: install-common npm
 
-develop: startapp install-development npm bower
+develop: install-development npm
 
-production: startapp install-production npm bower
+production: install-production npm
 
 $(PYTHON):
 	virtualenv env
@@ -14,7 +18,7 @@ $(PYTHON):
 $(PIP): $(PYTHON)
 
 startapp: $(PIP)
-	env/bin/pip install django==1.7
+	$(PIP) install django==1.8.9
 	env/bin/django-admin startproject --template=$(TEMPLATE) djangocms_project .
 
 install-common: $(PIP)
@@ -26,17 +30,11 @@ install-development: install-common
 install-production: install-common
 	$(PIP) install -r requirements/production.txt
 
-syncdb: install-common
-	$(PYTHON) manage.py syncdb
-
 clean:
 	git clean -xfd
 
 npm:
-	cd source/ && npm install
+	cd src/ && $(NPM) install
 
-bower:
-	cd source/ && bower install
-
-gulp: npm bower
-	cd source/ && gulp develop
+gulp: npm
+	cd src/ && gulp develop
