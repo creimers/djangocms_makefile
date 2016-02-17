@@ -21,6 +21,8 @@ startapp: $(PIP)
 	$(PIP) install django==1.8.9
 	env/bin/django-admin startproject --template=$(TEMPLATE) djangocms_project .
 
+init: startapp develop
+
 install-common: $(PIP)
 	$(PIP) install -r requirements/common.txt
 
